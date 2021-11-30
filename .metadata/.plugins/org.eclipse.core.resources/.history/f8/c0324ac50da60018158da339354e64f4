@@ -1,0 +1,31 @@
+package ¡Ÿ¿”∏ª;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) {
+		try {
+			String fileName = "C:\\Users\\tjqtj\\Desktop\\res.txt" ;
+			File file = new File(fileName) ;
+			FileWriter fw = new FileWriter(file, false) ;
+			Scanner scan = new Scanner(System.in);
+			int n = scan.nextInt();
+			scan.nextLine();
+			for(int i=0;i<n;i++) {
+				String str = scan.nextLine();
+				String[] arr = str.split(" ");
+				for(int j=0;j<arr.length;j++) {
+					fw.write(arr[j].charAt(0));
+		            fw.flush();
+				}
+				System.out.println();
+			}
+			fw.close();
+		}catch(Exception e){
+            e.printStackTrace();
+        }
+	         
+	}
+}

@@ -1,0 +1,69 @@
+package nypc;
+
+import java.util.*;import java.awt.event.ItemEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+public class Nypc2 {
+	
+	public static void main(String[] args) {
+		class item{
+			SimpleDateFormat f = new SimpleDateFormat("mm:ss", Locale.KOREA);
+			int team;
+			long time;
+			public item() {}
+			public item(int v,String c) {
+				this.team = v;
+				try {
+					this.time = f.parse(c).getTime();
+					System.out.println(time+"");
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		class Asc implements Comparator<item> {
+			@Override
+			public int compare(item arg0, item arg1) {
+				return (arg0.time < arg1.time) ? -1: (arg0.time > arg1.time) ? 1:0 ;
+			}
+		 
+		}
+
+		Scanner scan = new Scanner(System.in);
+		int T;
+		T = scan.nextInt();
+		scan.nextLine();
+		while(T>0) {
+			String str;
+			str = scan.nextLine();
+			List<item> list = new ArrayList<item>();
+			for(int i=0;i<8;i++) {
+				String[] cur = scan.nextLine().split(" ");
+				int tt = 0;
+				if(cur[0].equals("blue")) {
+					tt = 1;
+				}else {
+					tt = 2;
+				}
+				for(int j=0;j<cur.length;j++) {
+					System.out.println(cur[j]);
+				}
+				list.add(new item(tt,cur[1].split(".")[0]));
+			}
+			Asc asc = new Asc();
+			Collections.sort(list, asc);
+			System.out.println();
+			for(int i=0;i<list.size();i++) {
+			//	System.out.println(list.get(i).team+" "+list.get(i).time);
+			}
+			/*if(str.equals("item")) {
+				
+			}else {
+				
+			}*/
+			T--;
+		}
+	}
+}
